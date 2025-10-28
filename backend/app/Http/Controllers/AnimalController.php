@@ -8,20 +8,19 @@ use App\Models\Animal;
 class AnimalController extends Controller
 {
     public function index(){
-        $animals = Animal::All();
-        return $animals;
+        return Animal::All();
     }
 
-    public function create(Request $request)
+    public function store(Request $request)
     {
 
          $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'family_id' => 'required|integer',
+            'family_id' => 'nullable|integer',
             'description' => 'nullable|string'
         ]);
         
-        // 2. Handle file upload (if any)
+        // Handle file upload (if any)
         // if ($request->hasFile('photo')) {
         //     $path = $request->file('photo')->store('animals', 'public');
         //     $validated['photo'] = $path;
@@ -35,7 +34,7 @@ class AnimalController extends Controller
     public function show($id)
     {
         $animal = Animal::findOrFail($id);
-        return view('animals.show', compact('animal'));
+        return $animal;
     }
     
 
@@ -44,7 +43,7 @@ class AnimalController extends Controller
     public function edit($id)
     {
         $animal = Animal::findOrFail($id);
-        return view('animals.edit', compact('animal'));
+        return view('animals.edit')->with("animal",$animal);
     }
 
 
@@ -58,15 +57,9 @@ class AnimalController extends Controller
             'description' => 'nullable|string',
         ]);
 
-        // If a new photo is uploaded
-        // if ($request->hasFile('photo')) {
-        //     $path = $request->file('photo')->store('animals', 'public');
-        //     $validated['photo'] = $path;
-        // }
-
         $animal->update($validated);
 
-        return redirect()->route('animals.index')->with('success', 'Animal updated successfully!');
+        return back()->with('success', 'Animal updated successfully!');
     }
 
     public function delete($id)
@@ -74,6 +67,6 @@ class AnimalController extends Controller
         $animal = Animal::findOrFail($id);
         $animal->delete();
 
-        return redirect()->route('animals.index')->with('success', 'Animal deleted successfully!');
+        return back()->with('success', 'Animal deleted successfully!');
     }
 }
