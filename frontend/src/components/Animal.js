@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import api from "./api";
+import api from "../api";
 
 function Animal() {
   const [animals, setAnimals] = useState([]);
@@ -14,12 +14,12 @@ function Animal() {
     <div>
       <h1>Animals</h1>
       <ul>
-        {animals.map(a => (
-          <li key={a.id}>{a.name}</li>
+        {animals.map(animal => (
+          <li key={animal.id}>{animal.name}</li>
         ))}
       </ul>
     </div>
   );
 }
 
-export default AnimalList;
+export default Animal;
