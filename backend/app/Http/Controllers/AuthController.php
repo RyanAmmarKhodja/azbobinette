@@ -42,7 +42,7 @@ class AuthController extends Controller
     // Logout: revoke current token
     public function logout(Request $request)
     {
-        // If using token-based, revoke the token used in Authorization header
+        // Revoke the token used in Authorization header
         $request->user()->currentAccessToken()->delete();
 
         return response()->json(['message' => 'Logged out']);

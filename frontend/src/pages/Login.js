@@ -1,17 +1,23 @@
 import React, { useState } from 'react';
 import { login } from '../auth';
+import { useNavigate } from "react-router-dom";
+
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
 
+  const navigate = useNavigate();
+
   const submit = async (e) => {
     e.preventDefault();
     try {
       const user = await login(email, password);
       console.log('Logged in', user);
-      // redirect to dashboard
+      if(user){
+        navigate("/dashboard");
+      }
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed');
     }

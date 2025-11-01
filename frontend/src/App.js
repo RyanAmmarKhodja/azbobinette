@@ -1,14 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
-import Animal from './components/Animal';
-import Login from './components/Login';
+import logo from "./logo.svg";
+import "./App.css";
+import Animal from "./components/Animal";
+import Login from "./pages/Login";
+import { BrowserRouter as Router } from "react-router-dom";
+import AppRouter from "./router/AppRouter";
 
 function App() {
   return (
-    <div>
-      <h1>React App</h1>
-      <Login />
-    </div>
+    <AppRouter />
+    
+
   );
 }
 
