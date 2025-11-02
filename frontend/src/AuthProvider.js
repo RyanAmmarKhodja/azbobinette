@@ -14,15 +14,26 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem("token") || "");
   const navigate = useNavigate();
-
+  const [loading, setLoading] = useState(true);
 
   // useEffect will run every refresh to "remember" token.
   useEffect(() => {
-    if (token) {
-      api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    }
-  }, [token]);
+    const initAuth = async () => {
+      if (token) {
+        api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+        try {
+          const res = await api.get("/user"); // Get logged-in user
+          setUser(res.data);
+        } catch (err) {
+          console.error("Invalid or expired token:", err);
+          logout(); // logout if token is bad
+        }
+      }
+      setLoading(false);
+    };
 
+    initAuth();
+  }, [token]);
 
   // LOGIN
   const login = async (email, password) => {
@@ -43,7 +54,6 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-
   // LOGOUT
   const logout = async () => {
     try {
@@ -59,6 +69,14 @@ const AuthProvider = ({ children }) => {
       throw error;
     }
   };
+
+  if (loading) {
+    return (
+      <div style={{ textAlign: "center", marginTop: "100px" }}>
+        <h2>Loading...</h2>
+      </div>
+    );
+  }
 
   return (
     // Provide user, token, login and logout to children
