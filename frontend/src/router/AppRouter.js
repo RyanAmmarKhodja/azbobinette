@@ -1,24 +1,24 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-//import Home from "../pages/Home";
-//import About from "../pages/About";
-// import Contact from "../pages/Contact";
-// import NotFound from "../pages/NotFound";
-// import Navbar from "../components/Navbar";
 import Dashboard from "../pages/Dashboard";
 import Login from "../pages/Login";
+import { Navigate, Outlet } from "react-router-dom";
+import { useAuth } from "../AuthProvider";
 
 export default function AppRouter() {
+  const PrivateRoute = () => {
+    const auth = useAuth();
+    return auth.token ? <Outlet /> : <Navigate to="/login" />;
+  };
+
   return (
     <>
-      <h1>React App</h1>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Login />} />
+      <Routes>
+        <Route path="/" element={<Login />} />
+
+        <Route element={<PrivateRoute />}>
           <Route path="/dashboard" element={<Dashboard />} />
-          {/* <Route path="/contact" element={<Contact />} /> */}
-          {/* <Route path="*" element={<NotFound />} /> 404 page */}
-        </Routes>
-      </Router>
+        </Route>
+      </Routes>
     </>
   );
 }

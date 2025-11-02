@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { login } from '../auth';
-import { useNavigate } from "react-router-dom";
+import { useAuth } from "../AuthProvider";
 
 
 export default function Login() {
@@ -8,16 +7,14 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const auth = useAuth();
 
   const submit = async (e) => {
     e.preventDefault();
     try {
-      const user = await login(email, password);
-      console.log('Logged in', user);
-      if(user){
-        navigate("/dashboard");
-      }
+      await auth.login(email, password);
+      console.log('Logged in', auth.user);
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed');
     }
