@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useAuth } from "../AuthProvider";
 import { useNavigate } from "react-router-dom";
 
-
-
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -41,6 +39,7 @@ export default function Login() {
         onChange={(e) => setPassword(e.target.value)}
         placeholder="Password"
       />
+      
       <button type="submit">Login</button>
       {error && <div style={{ color: "red" }}>{error}</div>}
     </form>
