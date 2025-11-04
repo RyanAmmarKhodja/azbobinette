@@ -39,18 +39,22 @@ export default function Login() {
     //     onChange={(e) => setPassword(e.target.value)}
     //     placeholder="Password"
     //   />
-      
+
     //   <button type="submit">Login</button>
     //   {error && <div style={{ color: "red" }}>{error}</div>}
     // </form>
-    <div className="container d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
-      
-      <div className="card p-4 shadow-lg" style={{ width: '100%', maxWidth: '400px' }}>
+    <div
+      className="container d-flex justify-content-center align-items-center"
+      style={{ minHeight: "100vh" }}
+    >
+      <div
+        className="card p-4 shadow-lg"
+        style={{ width: "100%", maxWidth: "400px" }}
+      >
         <div className="card-body">
           <h3 className="card-title text-center mb-4">Sign In</h3>
 
           <form onSubmit={submit}>
-            
             {/* Email Input Group */}
             <div className="mb-3">
               <input
@@ -74,19 +78,26 @@ export default function Login() {
                 required
               />
             </div>
-            
+
             {/* Submit Button */}
             <button type="submit" className="btn btn-primary btn-lg w-100 mt-3">
               Log In
             </button>
-            
+
             {/* Error Message */}
             {error && (
-              <div className="alert alert-danger mt-3" role="alert">
-                {error}
+              <div class="alert alert-dismissible alert-danger mt-5">
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="alert"
+                ></button>
+                <strong>Oh snap!</strong>{" "}
+                <a href="#" class="alert-link">
+                  {error}
+                </a>
               </div>
             )}
-            
           </form>
         </div>
       </div>

@@ -72,8 +72,8 @@ const AuthProvider = ({ children }) => {
 
   if (loading) {
     return (
-      <div style={{ textAlign: "center", marginTop: "100px" }}>
-        <h2>Loading...</h2>
+      <div className="spinner-border mt-5" role="status">
+        <span className="sr-only"></span>
       </div>
     );
   }

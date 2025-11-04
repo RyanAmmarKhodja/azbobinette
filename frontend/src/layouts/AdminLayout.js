@@ -1,12 +1,14 @@
 import { Outlet } from "react-router-dom";
 import AdminNavbar from "../components/AdminNavbar";
+import Sidebar from "../components/Sidebar";
 
 
 const AdminLayout = () => {
   return (
     <>
       <AdminNavbar />
-      <div style={{ padding: "20px" }}>
+      <Sidebar />
+      <div style={{ marginLeft: "90px" }}>
         <Outlet />
       </div>
     </>

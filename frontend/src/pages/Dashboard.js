@@ -22,6 +22,28 @@ const Dashboard = () => {
       <h1>Welcome to Dashboard</h1>
       <button onClick={submit}>Logout</button>
 
+      <div className="card text-white bg-info mb-3" style={{ maxWidth: "20rem" }}>
+        <div className="card-header">Header</div>
+        <div className="card-body">
+          <h4 className="card-title">Info card title</h4>
+          <p className="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+        </div>
+      </div>
+
+      <div className="card text-white bg-primary mb-3" style={{ maxWidth: "20rem" }}>
+        <div className="card-header">Header</div>
+        <div className="card-body">
+          <h4 className="card-title">Primary card title</h4>
+          <p className="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+        </div>
+      </div>
+
       {error && <div style={{ color: "red" }}>{error}</div>}
     </div>
   );
