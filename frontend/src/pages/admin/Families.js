@@ -10,6 +10,7 @@ const Families = () => {
   const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
   const [families, setFamilies] = useState([]);
+  const [editId, setEditId] = useState(null);
 
   useEffect(() => {
     api
@@ -25,11 +26,18 @@ const Families = () => {
 
   const submit = (e) => {
     e.preventDefault();
+
+    if (editId) {
+      return updateFamily(e);
+    }
+
+
     api
       .post("/family/create", { name, description })
       .then((res) => {
         console.log("Family added:", res.data);
         //setShowModal(false);
+        setFamilies([...families, res.data.family]);
         setSuccess("Family added successfully");
         setName("");
         setDescription("");
@@ -38,6 +46,50 @@ const Families = () => {
         setError("Error adding family", err);
         console.error("Error adding family:", err);
       });
+  };
+
+  const deleteFamily = (id) => {
+    api
+      .delete(`/family/delete/${id}`)
+      .then((res) => {
+        console.log("Family deleted:", res.data);
+        setFamilies((prev) => prev.filter((family) => family.id !== id));
+      })
+      .catch((err) => {
+        console.error("Error deleting family:", err);
+      });
+  };
+
+  const editFamily = (id) => {
+    const family = families.find((family) => family.id === id);
+    if (family) {
+      setName(family.name);
+      setDescription(family.description);
+      setShowModal(true);
+      setEditId(id);
+    }
+  };
+
+  const updateFamily = (e) => {
+    e.preventDefault();
+    const id = editId;
+    if (id) {
+      api
+        .put(`/family/update/${id}`, { name, description })
+        .then((res) => {
+          console.log("Family updated:", res.data);
+          setFamilies((prev) =>
+            prev.map((family) => (family.id === id ? res.data.family : family))
+          );
+          setSuccess("Family updated successfully");
+          setShowModal(false);
+          setEditId(null);
+        })
+        .catch((err) => {
+          setError("Error updating family", err);
+          console.error("Error updating family:", err);
+        });
+    }
   };
 
   return (
@@ -73,13 +125,15 @@ const Families = () => {
                 <td>
                   <button
                     type="button"
-                    className="btn btn-outline-warning btn-sm mx-2"
+                    className="btn btn-warning btn-sm mx-2"
+                    onClick={editFamily.bind(this, family.id)}
                   >
                     Edit
                   </button>
                   <button
                     type="button"
-                    className="btn btn-outline-danger btn-sm mx-2"
+                    className="btn btn-danger btn-sm mx-2"
+                    onClick={deleteFamily.bind(this, family.id)}
                   >
                     Delete
                   </button>

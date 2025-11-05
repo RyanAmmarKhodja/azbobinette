@@ -6,9 +6,8 @@ import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "../AuthProvider";
 import ClientLayout from "../layouts/ClientLayout";
 import AdminLayout from "../layouts/AdminLayout";
-import AddAnimal from "../pages/admin/AddAnimal";
-import ViewAnimals from "../pages/admin/ViewAnimals";
 import Families from "../pages/admin/Families";
+import Animals from "../pages/admin/Animals";
 
 export default function AppRouter() {
   const PrivateRoute = () => {
@@ -34,9 +33,8 @@ export default function AppRouter() {
         {/* Protected Routes */}
         <Route element={<PrivateRoute />}>
           <Route path="/admin/dashboard" element={<Dashboard />} />
-          <Route path="/admin/animals" element={<AddAnimal />} />
-          <Route path="/admin/view_animals" element={<ViewAnimals />} />
           <Route path="/admin/families" element={<Families />} />
+          <Route path="/admin/animals" element={<Animals />} />
         </Route>
       </Routes>
     </>

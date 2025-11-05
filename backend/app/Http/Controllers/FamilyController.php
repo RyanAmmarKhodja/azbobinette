@@ -19,7 +19,7 @@ class FamilyController extends Controller
 
         $family->save();
 
-        return back()->with("status", "Votre famille a été sauvegardée avec success");
+        return response()->json(['message' => 'Family created successfully', 'family' => $family], 201);
 
     }
 
@@ -33,13 +33,13 @@ class FamilyController extends Controller
         $family->description = $request->input("description");
 
         $family->update();
-        return back()->with("status", "Votre famille a été sauvegardée avec success");
+        return response()->json(['message' => 'Family updated successfully', 'family' => $family], 200);
     }
 
     public function delete($id)
     {
         $family = Family::find($id);
         $family->delete();
-        return back()->with("status", "Votre famille a été supprimée avec succés");
+        return response()->json(['message' => 'Deleted successfully'], 200);
     }
 }
