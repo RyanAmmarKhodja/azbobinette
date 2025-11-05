@@ -8,7 +8,7 @@ const AdminNavbar = () => {
         style={{ position: "fixed", width: "100vw" }}
         data-bs-theme="light"
       >
-        <div class="container-fluid">
+        <div class="container-fluid" style={{ paddingLeft: "90px" }}>
           <a class="navbar-brand" href="#">
             Navbar
           </a>
@@ -95,9 +95,6 @@ const AdminNavbar = () => {
           </div>
         </div>
       </nav>
-
-      
-      
     </>
   );
 };
