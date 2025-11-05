@@ -28,6 +28,7 @@ const Dashboard = () => {
 
         <Card type="families" />
       </div>
+      
 
       {error && <div style={{ color: "red" }}>{error}</div>}
     </div>

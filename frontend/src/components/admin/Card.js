@@ -8,7 +8,7 @@ const Card = (props) => {
       <div className="card-body">
         <h4 className="card-title">13 {props.type} Listed</h4>
         {/* <a href="#" className="stretched-link" style={{ color: "White" }}>Plus d'info</a> */}
-        <NavLink to={`/${props.type}`} className="stretched-link" style={{ color: "White" }}>Plus d'info</NavLink>
+        <NavLink to={`/admin/${props.type}`} className="stretched-link" style={{ color: "White" }}>Plus d'info</NavLink>
       </div>
     </div>
   );
