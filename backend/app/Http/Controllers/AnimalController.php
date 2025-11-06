@@ -42,7 +42,7 @@ class AnimalController extends Controller
 
         return response()->json([
             'message' => 'Animal created successfully!',
-            'animal' => $animal->load('continents'),
+            'animal' => $animal->load('continents', 'family'),
         ]);
     }
 

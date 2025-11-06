@@ -27,6 +27,9 @@ const Families = () => {
   const submit = (e) => {
     e.preventDefault();
 
+    setSuccess(null);
+    setError(null);
+
     if (editId) {
       return updateFamily(e);
     }

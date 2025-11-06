@@ -15,7 +15,7 @@ const Animals = () => {
   const [selectedContinents, setSelectedContinents] = useState([]);
   const [continents, setContinents] = useState([]);
   const [families, setFamilies] = useState([]);
-  const [familyId, setFamilyId] = useState("");
+  const [familyId, setFamilyId] = useState(1);
 
   let data = {};
 
@@ -42,6 +42,8 @@ const Animals = () => {
   // Submit function to handle both add and update
   const submit = (e) => {
     e.preventDefault();
+    setSuccess(null);
+    setError(null);
 
     if (editId) {
       return updateAnimal(e);
@@ -163,7 +165,7 @@ const Animals = () => {
                 <td>{animal.family.name}</td>
                 <td>
                   {animal.continents.map((continent) => (
-                    <span key={continent.id}>{continent.name} </span>
+                    <span key={continent.id}>{continent.name}. </span>
                   ))}
                 </td>
                 <td>
