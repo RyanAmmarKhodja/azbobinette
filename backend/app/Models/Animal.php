@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Animal extends Model
 {
     protected $fillable = [
@@ -12,8 +13,13 @@ class Animal extends Model
         'description'
     ];
 
-    
-    public function animals() {
-    return $this->belongsToMany(Animal::class, 'animal_continent');
-}
+    public function family()
+    {
+        return $this->belongsTo(Family::class);
+    }
+
+    public function continents()
+    {
+        return $this->belongsToMany(Continent::class, 'animal_continent');
+    }
 }

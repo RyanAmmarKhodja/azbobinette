@@ -6,7 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Family extends Model
 {
-    public function family() {
-    return $this->belongsTo(Family::class);
-}
+    protected $fillable = ['name'];
+
+    public function animals()
+    {
+        return $this->hasMany(Animal::class);
+    }
 }

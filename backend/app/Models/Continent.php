@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Continent extends Model
 {
-    public function continent() {
-    return $this->belongsToMany(Continent::class, 'animal_continent');
-}
+   public function animals()
+    {
+        return $this->belongsToMany(Animal::class, 'animal_continent');
+    }
 }
