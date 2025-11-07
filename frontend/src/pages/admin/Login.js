@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "../../AuthProvider";
 import { useNavigate } from "react-router-dom";
+import Loading from "../../components/Loading";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
-
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const auth = useAuth();
 
@@ -17,12 +18,15 @@ export default function Login() {
   });
 
   const submit = async (e) => {
+    setLoading(true);
     e.preventDefault();
     try {
       await auth.login(email, password);
       console.log("Logged in", auth.user);
     } catch (err) {
       setError(err.response?.data?.message || "Login failed");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -84,16 +88,17 @@ export default function Login() {
               Log In
             </button>
 
+    <Loading loading={loading} />
             {/* Error Message */}
             {error && (
-              <div class="alert alert-dismissible alert-danger mt-5">
+              <div className="alert alert-dismissible alert-danger mt-5">
                 <button
                   type="button"
-                  class="btn-close"
+                  className="btn-close"
                   data-bs-dismiss="alert"
                 ></button>
                 <strong>Oh snap!</strong>{" "}
-                <a href="#" class="alert-link">
+                <a href="#" className="alert-link">
                   {error}
                 </a>
               </div>
