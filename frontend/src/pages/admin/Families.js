@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import { Plus } from "lucide-react";
 import Modal from "../../components/Modal";
 import api from "../../api";
+import Loading from "../../components/Loading";
 
 const Families = () => {
   const [showModal, setShowModal] = useState(false);
@@ -11,8 +12,12 @@ const Families = () => {
   const [error, setError] = useState(null);
   const [families, setFamilies] = useState([]);
   const [editId, setEditId] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  let data = {};
 
   useEffect(() => {
+    setLoading(true);
     api
       .get("/family")
       .then((res) => {
@@ -21,7 +26,11 @@ const Families = () => {
       })
       .catch((err) => {
         console.error("Error fetching families:", err);
+      })
+      .finally(() => {
+        setLoading(false);
       });
+
   }, []);
 
   const submit = (e) => {
@@ -212,6 +221,8 @@ const Families = () => {
         </form>
       </Modal>
       {/* Modal End */}
+
+      <Loading loading={loading} />
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Plus } from "lucide-react";
 import Modal from "../../components/Modal";
+import Loading from "../../components/Loading";
 import api from "../../api";
 
 const Animals = () => {
@@ -16,11 +17,13 @@ const Animals = () => {
   const [continents, setContinents] = useState([]);
   const [families, setFamilies] = useState([]);
   const [familyId, setFamilyId] = useState(1);
+  const [loading, setLoading] = useState(false);
 
   let data = {};
 
   // Fetch continents and animals on component mount
   useEffect(() => {
+    setLoading(true);
     api.get("/continents").then((res) => setContinents(res.data));
 
     api.get("/family").then((res) => {
@@ -36,7 +39,11 @@ const Animals = () => {
       })
       .catch((err) => {
         console.error("Error fetching animals:", err);
+      })
+      .finally(() => {
+        setLoading(false);
       });
+
   }, []);
 
   // Submit function to handle both add and update
@@ -136,7 +143,7 @@ const Animals = () => {
             className="btn btn-outline-primary"
             onClick={() => setShowModal(true)}
           >
-            <Plus /> Ajouter une famille d'animaux
+            <Plus /> Ajouter un animal
           </button>
         </div>
       </div>
@@ -310,6 +317,8 @@ const Animals = () => {
         </form>
       </Modal>
       {/* Modal End */}
+
+      <Loading loading={loading} />
     </div>
   );
 };

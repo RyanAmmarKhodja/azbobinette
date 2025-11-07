@@ -5,7 +5,7 @@ export default function ClientLayout() {
   return (
     <>
       <PublicNavbar />
-      <div style={{ padding: "20px" }}>
+      <div style={{ padding: "20px", paddingTop: "70px"}}>
         <Outlet />
       </div>
     </>

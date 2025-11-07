@@ -8,6 +8,7 @@ import ClientLayout from "../layouts/ClientLayout";
 import AdminLayout from "../layouts/AdminLayout";
 import Families from "../pages/admin/Families";
 import Animals from "../pages/admin/Animals";
+import Home from "../pages/client/Home";
 
 export default function AppRouter() {
   const PrivateRoute = () => {
@@ -24,7 +25,7 @@ export default function AppRouter() {
     <>
       <Routes>
         <Route element={<PublicRoute />}>
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           {/* Catch-all route for 404 */}
           <Route path="*" element={<PageNotFound />} />

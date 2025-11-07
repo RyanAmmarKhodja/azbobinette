@@ -2,6 +2,7 @@ import { useContext, createContext, useState, useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
 import api from "./api";
+import Loading from "./components/Loading";
 
 const AuthContext = createContext();
 
@@ -18,6 +19,7 @@ const AuthProvider = ({ children }) => {
 
   // useEffect will run every refresh to "remember" token.
   useEffect(() => {
+    setLoading(true);
     const initAuth = async () => {
       if (token) {
         api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -70,13 +72,7 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  if (loading) {
-    return (
-      <div className="spinner-border mt-5" role="status">
-        <span className="sr-only"></span>
-      </div>
-    );
-  }
+  <Loading loading={loading} />
 
   return (
     // Provide user, token, login and logout to children
