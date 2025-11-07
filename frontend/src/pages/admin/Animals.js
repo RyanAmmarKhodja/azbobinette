@@ -4,8 +4,8 @@ import Modal from "../../components/Modal";
 import Loading from "../../components/Loading";
 import api from "../../api";
 
-const Animals = () => {
-  const [showModal, setShowModal] = useState(false);
+const Animals = (props) => {
+  const [showModal, setShowModal] = useState(props.showModal || false);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
 

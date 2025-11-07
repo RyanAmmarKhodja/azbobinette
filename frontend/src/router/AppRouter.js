@@ -9,6 +9,8 @@ import AdminLayout from "../layouts/AdminLayout";
 import Families from "../pages/admin/Families";
 import Animals from "../pages/admin/Animals";
 import Home from "../pages/client/Home";
+import Catalogue from "../pages/client/Catalogue";
+import About from "../pages/client/About";
 
 export default function AppRouter() {
   const PrivateRoute = () => {
@@ -27,15 +29,20 @@ export default function AppRouter() {
         <Route element={<PublicRoute />}>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/catalogue" element={<Catalogue />} />
+          <Route path="/about" element={<About />} />
           {/* Catch-all route for 404 */}
           <Route path="*" element={<PageNotFound />} />
         </Route>
 
         {/* Protected Routes */}
         <Route element={<PrivateRoute />}>
+          <Route path="/admin" element={<Dashboard />} />
           <Route path="/admin/dashboard" element={<Dashboard />} />
           <Route path="/admin/families" element={<Families />} />
+          <Route path="/admin/families/add" element={<Families showModal={true} />} />
           <Route path="/admin/animals" element={<Animals />} />
+          <Route path="/admin/animals/add" element={<Animals showModal={true} />} />
         </Route>
       </Routes>
     </>

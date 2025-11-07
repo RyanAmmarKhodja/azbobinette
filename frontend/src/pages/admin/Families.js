@@ -4,8 +4,8 @@ import Modal from "../../components/Modal";
 import api from "../../api";
 import Loading from "../../components/Loading";
 
-const Families = () => {
-  const [showModal, setShowModal] = useState(false);
+const Families = (props) => {
+  const [showModal, setShowModal] = useState(props.showModal || false);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [success, setSuccess] = useState(null);

@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../AuthProvider";
+import { NavLink } from "react-router-dom";
 
 const AdminNavbar = () => {
 
@@ -26,7 +27,9 @@ const AdminNavbar = () => {
       >
         <div className="container-fluid" style={{ paddingLeft: "90px" }}>
           <a className="navbar-brand" href="#">
-            Navbar
+            <NavLink to="/" style={{ textDecoration: "none", color: "black" }}>
+              Azbobinette
+            </NavLink>
           </a>
           <button
             className="navbar-toggler"
@@ -40,63 +43,50 @@ const AdminNavbar = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarColor03">
-            <ul className="navbar-nav me-auto">
-              <li className="nav-item">
-                <a className="nav-link active" href="#">
-                  Home
-                  <span className="visually-hidden">(current)</span>
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <a class="nav-link active" href="#">
+                  <NavLink
+                    to="/"
+                    style={({ isActive }) => ({
+                      color: isActive ? "black" : "grey",
+                      textDecoration: "none",
+                    })}
+                  >
+                    Accueil
+                  </NavLink>
+                  <span class="visually-hidden">(current)</span>
                 </a>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Features
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <NavLink
+                    to="/catalogue"
+                    style={({ isActive }) => ({
+                      color: isActive ? "black" : "grey",
+                      textDecoration: "none",
+                    })}
+                  >
+                    Catalogue
+                  </NavLink>
                 </a>
 
-                {/* <NavLink
-                  to="/about"
-                  style={({ isActive }) => ({
-                    color: isActive ? "blue" : "black",
-                    textDecoration: "none",
-                  })}
-                ></NavLink> */}
               </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Pricing
+              
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <NavLink
+                    to="/about"
+                    style={({ isActive }) => ({
+                      color: isActive ? "black" : "grey",
+                      textDecoration: "none",
+                    })}
+                  >
+                    A propos
+                  </NavLink>
                 </a>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">
-                  About
-                </a>
-              </li>
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle"
-                  data-bs-toggle="dropdown"
-                  href="#"
-                  role="button"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  Dropdown
-                </a>
-                <div className="dropdown-menu">
-                  <a className="dropdown-item" href="#">
-                    Action
-                  </a>
-                  <a className="dropdown-item" href="#">
-                    Another action
-                  </a>
-                  <a className="dropdown-item" href="#">
-                    Something else here
-                  </a>
-                  <div className="dropdown-divider"></div>
-                  <a className="dropdown-item" href="#">
-                    Separated link
-                  </a>
-                </div>
-              </li>
+             
             </ul>
             <form className="d-flex">
               <input

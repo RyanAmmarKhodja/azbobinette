@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, X, ChevronDown, Dog, Users, List, PlusCircle, PawPrint } from 'lucide-react';
+import { NavLink } from 'react-router-dom';
 
 export default function CollapsibleSidebar() {
   const [isCollapsed, setIsCollapsed] = useState(true);
@@ -131,8 +132,8 @@ export default function CollapsibleSidebar() {
                   marginTop: openDropdown === 'animals' ? '8px' : '0',
                 }}
               >
+                <NavLink to="/admin/animals" style={{ color: 'inherit', textDecoration: 'none' }}>
                 <a
-                  href="#view-animals"
                   style={{
                     display: 'flex',
                     alignItems: 'center',
@@ -157,10 +158,12 @@ export default function CollapsibleSidebar() {
                   }}
                 >
                   <List size={14} style={{ marginRight: '10px' }} />
-                  View Animals
+                  Afficher les animaux
                 </a>
+                </NavLink>
+                <NavLink to="/admin/animals/add" style={{ color: 'inherit', textDecoration: 'none' }}>
+                    
                 <a
-                  href="#add-animal"
                   style={{
                     display: 'flex',
                     alignItems: 'center',
@@ -185,8 +188,9 @@ export default function CollapsibleSidebar() {
                   }}
                 >
                   <PlusCircle size={14} style={{ marginRight: '10px' }} />
-                  Add Animal
+                  Ajouter un animal
                 </a>
+                </NavLink>
               </div>
             )}
           </div>
@@ -243,8 +247,8 @@ export default function CollapsibleSidebar() {
                   marginTop: openDropdown === 'families' ? '8px' : '0',
                 }}
               >
+                <NavLink to="/admin/families" style={{ color: 'inherit', textDecoration: 'none' }}>
                 <a
-                  href="#view-families"
                   style={{
                     display: 'flex',
                     alignItems: 'center',
@@ -269,10 +273,12 @@ export default function CollapsibleSidebar() {
                   }}
                 >
                   <List size={14} style={{ marginRight: '10px' }} />
-                  View Families
+                  Afficher les familles
                 </a>
+                </NavLink>
+
+                <NavLink to="/admin/families/add" style={{ color: 'inherit', textDecoration: 'none' }}>
                 <a
-                  href="#add-family"
                   style={{
                     display: 'flex',
                     alignItems: 'center',
@@ -297,8 +303,9 @@ export default function CollapsibleSidebar() {
                   }}
                 >
                   <PlusCircle size={14} style={{ marginRight: '10px' }} />
-                  Add Family
+                  Ajouter une famille
                 </a>
+                </NavLink>
               </div>
             )}
           </div>

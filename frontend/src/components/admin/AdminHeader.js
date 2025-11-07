@@ -1,4 +1,5 @@
 import React from "react";
+import Breadcrumbs from "./Breadcrumb";
 
 const AdminHeader = () => {
   return (
@@ -10,12 +11,14 @@ const AdminHeader = () => {
       </div>
 
       <div className="col-sm-6">
-        <ol className="breadcrumb" style={{ float: "right" }}>
+        <Breadcrumbs />
+
+        {/* <ol className="breadcrumb" style={{ float: "right" }}>
           <li className="breadcrumb-item">
             <a href="#">Home</a>
           </li>
           <li className="breadcrumb-item active">Dashboard v1</li>
-        </ol>
+        </ol> */}
       </div>
     </div>
   );
