@@ -22,7 +22,7 @@ const AdminNavbar = () => {
     <>
       <nav
         className="navbar navbar-expand-lg bg-light"
-        style={{ position: "fixed", width: "100vw" }}
+        style={{ position: "fixed", width: "100vw", zIndex: 10 }}
         data-bs-theme="light"
       >
         <div className="container-fluid" style={{ paddingLeft: "90px" }}>

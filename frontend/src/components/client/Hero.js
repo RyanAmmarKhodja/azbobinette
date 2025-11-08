@@ -6,10 +6,12 @@ const Hero = () => {
     <div
       className="hero-background d-flex align-items-center justify-content-center text-white text-center"
       style={{
+        
         backgroundImage: `linear-gradient(${overlayColor}, ${overlayColor}), url(hero.jpg)`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        height: "100vh",
+        height: "120vh",
+        clipPath: "ellipse(100% 66% at 36% 31%)",
       }}
     >
       <div className="container row" style={{ textAlign: "start" }}>
@@ -19,7 +21,7 @@ const Hero = () => {
           </h1>
 
           <p className="mb-4 white">
-            Découvrez de nouvelles possibilités et embarquez pour un voyage
+            Découvrez de nouvelles aventures et embarquez pour un voyage
             inoubliable avec nous.
           </p>
 

@@ -8,7 +8,7 @@ const AdminLayout = () => {
     <>
       <AdminNavbar />
       <Sidebar />
-      <div style={{ marginLeft: "80px", marginTop: "60px", padding: "20px" }}>
+      <div style={{ marginLeft: "80px", marginTop: "60px", padding: "20px", minHeight: "100vh", overflowX: "hidden" }}>
       <AdminHeader />
         <Outlet />
       </div>
