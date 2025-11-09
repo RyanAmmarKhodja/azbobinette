@@ -25,10 +25,8 @@ const Hero = () => {
             inoubliable avec nous.
           </p>
 
-          <button className="btn btn-primary">Commencer</button>
-          <button className="btn btn-outline-primary mx-2">
-            En savoir plus
-          </button>
+          <a className="btn btn-jungle" href="#desc" style={{width:"10rem"}}>Découvrir</a>
+          
         </div>
         <div className="col">
             </div>

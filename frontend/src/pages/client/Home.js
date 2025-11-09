@@ -2,18 +2,21 @@ import React from "react";
 import Hero from "../../components/client/Hero";
 import ZooAnimalsSection from "../../components/client/ZooAnimalsSection";
 import Footer from "../../components/client/Footer";
+import { ArrowBigDownIcon } from "lucide-react";
 
 const Home = () => {
   return (
     <div style={{ backgroundColor: "#F7F7E8", overflowX: "hidden" }}>
       <Hero />
+
       <section
+      id="desc"
         style={{
-          height: "80vh",
+          height: "100vh",
           marginTop: "-100px",
           backgroundImage: "url(blob.svg)",
           backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
+          backgroundPositionY: "80%",
           backgroundSize: "cover",
         }}
         className="d-flex justify-content-center align-items-center"
@@ -32,10 +35,22 @@ const Home = () => {
             inoubliables au contact de ce monde naturel fascinant, peuplé
             d'animaux qui sautent, rugissent et crient.
           </p>
+
+          <a className="btn btn-jungle mt-4" href="#more-info" style={{width:"10rem"}}>
+            En savoir plus <ArrowBigDownIcon />
+          </a>
         </div>
       </section>
 
-      <ZooAnimalsSection />
+
+      <section
+        id="more-info"
+        className="py-5"
+        style={{ marginTop: "-80px", marginRight: "-80px" }}
+      >
+        <ZooAnimalsSection />
+      </section>
+
       <Footer />
     </div>
   );

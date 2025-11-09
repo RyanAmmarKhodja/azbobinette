@@ -1,5 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Card from "./Card";
 
 const animals = [
   {
@@ -20,26 +21,25 @@ const animals = [
   },
 ];
 
+const imgSource = "parrots.jpg";
+
 export default function ZooAnimalsSection() {
   return (
-    <section
-      className="py-5"
-      style={{ marginTop: "-80px", marginRight: "-80px" }}
-    >
+    
       <div className="container">
         {/* Header Section */}
-        <div className="row align-items-center mb-5">
-          <div className="col-md-6 d-flex">
-          
+        <div className="row mb-5">
+          <div className="col-md-6 d-flex " style={{marginRight:"-40px"}}>
+            <img src={imgSource} alt={animals[0].name} style={{width: "100%", height: "auto", zIndex:"1"}} />
           </div>
 
-          <div className="col-md-6 text-md-end">
-            <div className="p-5 bg-white shadow-sm text-center">
+          <div className="col-md-6 text-md-end" style={{marginLeft:"-40px", zIndex:"5"}}>
+            <div className="p-5 bg-white shadow-sm text-center m-4" >
               <h2 className="fw-bold display-5 mb-3 py-5">
                 LES ANIMAUX DU ZOO
               </h2>
               <hr className="border-2 opacity-100 mb-5" />
-              <a href="#" className="text-uppercase fw-bold text-danger py-4">
+              <a href="#" className="text-uppercase fw-bold text-danger py-4" >
                 ▸ Découvrir les animaux
               </a>
             </div>
@@ -49,27 +49,10 @@ export default function ZooAnimalsSection() {
         {/* Cards Section */}
         <div className="row g-4">
           {animals.map((animal, index) => (
-            <div className="col-sm-6 col-md-3" key={index}>
-              <div className="card border-0 shadow-sm h-100">
-                <img
-                  src={animal.img}
-                  className="card-img-top"
-                  alt={animal.name}
-                  style={{
-                    objectFit: "cover",
-                    height: "200px",
-                    borderTopLeftRadius: "0.25rem",
-                    borderTopRightRadius: "0.25rem",
-                  }}
-                />
-                <div className="card-body">
-                  <h5 className="card-title fw-bold mb-0">{animal.name}</h5>
-                </div>
-              </div>
-            </div>
+            <Card key={index} img={imgSource} name={animal.name} index={index} style={index % 2 === 0 ? { marginTop: "10px" } : {}} />
           ))}
         </div>
       </div>
-    </section>
+    
   );
 }

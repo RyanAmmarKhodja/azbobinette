@@ -2,12 +2,13 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 const ClientNavbar = () => {
+  const jungleActive = { color: "#1C7435", fontWeight: "bold" };
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-light" style={{position:"fixed",width:"100vw", zIndex: 10}} data-bs-theme="light">
         <div className="container-fluid">
           <a className="navbar-brand">
-            <NavLink to="/" style={{ textDecoration: "none", color: "black" }}>
+            <NavLink to="/" style={{ textDecoration: "none", color: "#1C7435", fontWeight: "bold", fontSize: "1.5rem" }}>
               Azbobinette
             </NavLink>
           </a>
@@ -29,8 +30,9 @@ const ClientNavbar = () => {
                   <NavLink
                     to="/"
                     style={({ isActive }) => ({
-                      color: isActive ? "black" : "grey",
+                      color: isActive ? jungleActive.color : "grey",
                       textDecoration: "none",
+                      fontWeight: isActive ? jungleActive.fontWeight : "normal",
                     })}
                   >
                     Accueil
@@ -43,8 +45,9 @@ const ClientNavbar = () => {
                   <NavLink
                     to="/catalogue"
                     style={({ isActive }) => ({
-                      color: isActive ? "black" : "grey",
+                      color: isActive ? jungleActive.color : "grey",
                       textDecoration: "none",
+                      fontWeight: isActive ? jungleActive.fontWeight : "normal",
                     })}
                   >
                     Catalogue
@@ -58,8 +61,9 @@ const ClientNavbar = () => {
                   <NavLink
                     to="/about"
                     style={({ isActive }) => ({
-                      color: isActive ? "black" : "grey",
+                      color: isActive ? jungleActive.color : "grey",
                       textDecoration: "none",
+                      fontWeight: isActive ? jungleActive.fontWeight : "normal",
                     })}
                   >
                     A propos
@@ -74,7 +78,7 @@ const ClientNavbar = () => {
                 type="search"
                 placeholder="Search"
               />
-              <button className="btn btn-secondary my-2 my-sm-0" type="submit">
+              <button className="btn btn-jungle my-2 my-sm-0" type="submit">
                 Search
               </button>
             </form>
