@@ -4,10 +4,10 @@ import { useAuth } from "../../AuthProvider";
 import { NavLink } from "react-router-dom";
 
 const AdminNavbar = () => {
-
   const auth = useAuth();
   const navigate = useNavigate();
   const [error, setError] = React.useState(null);
+  const jungleActive = { color: "#1C7435", fontWeight: "bold" };
 
   const submit = async () => {
     try {
@@ -26,11 +26,18 @@ const AdminNavbar = () => {
         data-bs-theme="light"
       >
         <div className="container-fluid" style={{ paddingLeft: "90px" }}>
-          <a className="navbar-brand" href="#">
-            <NavLink to="/" style={{ textDecoration: "none", color: "black" }}>
-              Azbobinette
-            </NavLink>
-          </a>
+          <NavLink
+            className={"navbar-brand"}
+            to="/"
+            style={{
+              textDecoration: "none",
+              color: "#1C7435",
+              fontWeight: "bold",
+              fontSize: "1.5rem",
+            }}
+          >
+            Azbobinette
+          </NavLink>
           <button
             className="navbar-toggler"
             type="button"
@@ -45,48 +52,31 @@ const AdminNavbar = () => {
           <div className="collapse navbar-collapse" id="navbarColor03">
             <ul className="navbar-nav me-auto">
               <li className="nav-item">
-                <a className="nav-link active" href="#">
-                  <NavLink
-                    to="/"
-                    style={({ isActive }) => ({
-                      color: isActive ? "black" : "grey",
-                      textDecoration: "none",
-                    })}
-                  >
-                    Accueil
-                  </NavLink>
-                  <span className="visually-hidden">(current)</span>
-                </a>
+                <NavLink
+                  className={"nav-link"}
+                  to="/"
+                  style={({ isActive }) => ({
+                    color: isActive ? jungleActive.color : "grey",
+                    textDecoration: "none",
+                    fontWeight: isActive ? jungleActive.fontWeight : "normal",
+                  })}
+                >
+                  Accueil
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
-                  <NavLink
-                    to="/catalogue"
-                    style={({ isActive }) => ({
-                      color: isActive ? "black" : "grey",
-                      textDecoration: "none",
-                    })}
-                  >
-                    Catalogue
-                  </NavLink>
-                </a>
-
+                <NavLink
+                  className={"nav-link"}
+                  to="/catalogue"
+                  style={({ isActive }) => ({
+                    color: isActive ? jungleActive.color : "grey",
+                    textDecoration: "none",
+                    fontWeight: isActive ? jungleActive.fontWeight : "normal",
+                  })}
+                >
+                  Animaux
+                </NavLink>
               </li>
-              
-              <li className="nav-item">
-                <a className="nav-link" href="#">
-                  <NavLink
-                    to="/about"
-                    style={({ isActive }) => ({
-                      color: isActive ? "black" : "grey",
-                      textDecoration: "none",
-                    })}
-                  >
-                    A propos
-                  </NavLink>
-                </a>
-              </li>
-             
             </ul>
             <form className="d-flex">
               <input
@@ -94,13 +84,18 @@ const AdminNavbar = () => {
                 type="search"
                 placeholder="Search"
               />
-              <button className="btn btn-secondary my-2 my-sm-0" type="submit">
+              <button className="btn btn-jungle my-2 my-sm-0" type="submit">
                 Search
               </button>
             </form>
-            <a className="btn btn-outline-secondary" href="#" onClick={submit} style={{marginLeft: "20px"}}>
-                    Logout
-                  </a>
+            <a
+              className="btn btn-outline-secondary"
+              href="#"
+              onClick={submit}
+              style={{ marginLeft: "20px" }}
+            >
+              Logout
+            </a>
           </div>
         </div>
       </nav>

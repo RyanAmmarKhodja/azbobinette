@@ -1,10 +1,10 @@
 import { Outlet } from "react-router-dom";
-import PublicNavbar from "../components/client/ClientNavbar";
+import Navbar from "../components/Navbar";
 
 export default function ClientLayout() {
   return (
     <>
-      <PublicNavbar />
+      <Navbar loggedIn={false} />
       <div >
         <Outlet />
       </div>

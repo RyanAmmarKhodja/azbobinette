@@ -1,6 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Card from "./Card";
+import { NavLink } from "react-router-dom";
 
 const animals = [
   {
@@ -39,9 +40,9 @@ export default function ZooAnimalsSection() {
                 LES ANIMAUX DU ZOO
               </h2>
               <hr className="border-2 opacity-100 mb-5" />
-              <a href="#" className="text-uppercase fw-bold text-danger py-4" >
+              <NavLink to="/catalogue" className="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover fw-bold" >
                 ▸ Découvrir les animaux
-              </a>
+              </NavLink>
             </div>
           </div>
         </div>

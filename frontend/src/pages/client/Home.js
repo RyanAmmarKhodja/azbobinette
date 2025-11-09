@@ -1,8 +1,8 @@
 import React from "react";
-import Hero from "../../components/client/Hero";
+import Hero from "../../components/client/HomeHero";
 import ZooAnimalsSection from "../../components/client/ZooAnimalsSection";
 import Footer from "../../components/client/Footer";
-import { ArrowBigDownIcon } from "lucide-react";
+import { ChevronsDown } from "lucide-react";
 
 const Home = () => {
   return (
@@ -37,7 +37,7 @@ const Home = () => {
           </p>
 
           <a className="btn btn-jungle mt-4" href="#more-info" style={{width:"10rem"}}>
-            En savoir plus <ArrowBigDownIcon />
+            En savoir plus <ChevronsDown />
           </a>
         </div>
       </section>

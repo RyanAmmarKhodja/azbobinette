@@ -5,13 +5,25 @@ const ClientNavbar = () => {
   const jungleActive = { color: "#1C7435", fontWeight: "bold" };
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-light" style={{position:"fixed",width:"100vw", zIndex: 10}} data-bs-theme="light">
+      <nav
+        className="navbar navbar-expand-lg bg-light"
+        style={{ position: "fixed", width: "100vw", zIndex: 10 }}
+        data-bs-theme="light"
+      >
         <div className="container-fluid">
-          <a className="navbar-brand">
-            <NavLink to="/" style={{ textDecoration: "none", color: "#1C7435", fontWeight: "bold", fontSize: "1.5rem" }}>
-              Azbobinette
-            </NavLink>
-          </a>
+          <NavLink
+            className={"navbar-brand"}
+            to="/"
+            style={{
+              textDecoration: "none",
+              color: "#1C7435",
+              fontWeight: "bold",
+              fontSize: "1.5rem",
+            }}
+          >
+            Azbobinette
+          </NavLink>
+
           <button
             className="navbar-toggler"
             type="button"
@@ -26,51 +38,31 @@ const ClientNavbar = () => {
           <div className="collapse navbar-collapse" id="navbarColor03">
             <ul className="navbar-nav me-auto">
               <li className="nav-item">
-                <a className="nav-link active" href="#">
-                  <NavLink
-                    to="/"
-                    style={({ isActive }) => ({
-                      color: isActive ? jungleActive.color : "grey",
-                      textDecoration: "none",
-                      fontWeight: isActive ? jungleActive.fontWeight : "normal",
-                    })}
-                  >
-                    Accueil
-                  </NavLink>
-                  <span className="visually-hidden">(current)</span>
-                </a>
+                <NavLink
+                  className={"nav-link"}
+                  to="/"
+                  style={({ isActive }) => ({
+                    color: isActive ? jungleActive.color : "grey",
+                    textDecoration: "none",
+                    fontWeight: isActive ? jungleActive.fontWeight : "normal",
+                  })}
+                >
+                  Accueil
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
-                  <NavLink
-                    to="/catalogue"
-                    style={({ isActive }) => ({
-                      color: isActive ? jungleActive.color : "grey",
-                      textDecoration: "none",
-                      fontWeight: isActive ? jungleActive.fontWeight : "normal",
-                    })}
-                  >
-                    Catalogue
-                  </NavLink>
-                </a>
-
+                <NavLink
+                  className={"nav-link"}
+                  to="/catalogue"
+                  style={({ isActive }) => ({
+                    color: isActive ? jungleActive.color : "grey",
+                    textDecoration: "none",
+                    fontWeight: isActive ? jungleActive.fontWeight : "normal",
+                  })}
+                >
+                  Animaux
+                </NavLink>
               </li>
-              
-              <li className="nav-item">
-                <a className="nav-link" href="#">
-                  <NavLink
-                    to="/about"
-                    style={({ isActive }) => ({
-                      color: isActive ? jungleActive.color : "grey",
-                      textDecoration: "none",
-                      fontWeight: isActive ? jungleActive.fontWeight : "normal",
-                    })}
-                  >
-                    A propos
-                  </NavLink>
-                </a>
-              </li>
-             
             </ul>
             <form className="d-flex">
               <input

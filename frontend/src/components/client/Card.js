@@ -1,4 +1,6 @@
+import { CirclePlus } from "lucide-react";
 import React from "react";
+import Modal from "../Modal";
 
 function Card(props) {
   return (
@@ -17,8 +19,16 @@ function Card(props) {
         />
         <div className="card-body">
           <h5 className="card-title fw-bold mb-0">{props.name}</h5>
+          {props.link && (
+            <a onClick={props.onClick} className="stretched-link text-decoration-none text-success fw-semibold">
+                Voir plus <CirclePlus size={16} />
+            </a>
+          )}
         </div>
       </div>
+
+      
+
     </div>
   );
 }
