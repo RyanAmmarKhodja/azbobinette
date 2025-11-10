@@ -21,15 +21,17 @@ class AnimalController extends Controller
             'name' => 'required|string|max:255',
             'family_id' => 'nullable|exists:families,id',
             'description' => 'nullable|string',
+            'image_path' => 'nullable|string',
             'continents' => 'array',
             'continents.*' => 'exists:continents,id',
         ]);
 
-        // Handle file upload (if any)
-        // if ($request->hasFile('photo')) {
-        //     $path = $request->file('photo')->store('animals', 'public');
-        //     $validated['photo'] = $path;
-        // }
+        // Handle file upload 
+        if ($request->hasFile('photo')) {
+            $path = $request->file('photo')->store('animals', 'public');
+            $validated['image_path'] = $path;
+        }
+
         $animal = Animal::create([
             'name' => $validated['name'],
             'family_id' => $validated['family_id'],

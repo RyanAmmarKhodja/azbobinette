@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name', 150);
             $table->text('description')->nullable();
             $table->foreignId('family_id')->constrained('families')->onDelete('cascade');
-            
+            $table->string('image_path')->nullable(); 
             $table->timestamps();
         });
     }
