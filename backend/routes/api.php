@@ -34,6 +34,7 @@ Route::get('/user', function (Request $request) {
 
 // Animal Controller
 Route::get('/animals', [AnimalController::class, 'index']);
+Route::get('/animals/take', [AnimalController::class, 'take']); // get a limited number of animals
 Route::get('/animals/{id}', [AnimalController::class, 'show']); // show specific animal
 Route::post('/animals/create', [AnimalController::class, 'store']);
 Route::get('/animals/edit/{id}', [AnimalController::class, 'edit']);  // returns edit dashboard
@@ -53,3 +54,4 @@ Route::delete('/family/delete/{id}', [FamilyController::class, 'delete']);
 
 // Continents
 Route::get('/continents',[ContinentController::class, 'continents']);
+Route::post('/continents', [ContinentController::class, 'store']);

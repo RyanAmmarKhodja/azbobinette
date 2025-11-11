@@ -13,6 +13,7 @@ const Catalogue = () => {
   const [description, setDescription] = React.useState("");
   const [continents, setContinents] = React.useState([]);
   const [family, setFamily] = React.useState("");
+  const [image, setImage] = React.useState("");
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState(null);
 
@@ -39,9 +40,10 @@ const Catalogue = () => {
       </section>
 
       <section id="catalogue">
-        <div className="d-flex gap-4 m-5">
+        <div className="d-flex gap-4 m-5 flex-wrap justify-content-center">
           {animals.map((animal, index) => (
             <Card
+              img={animal.image_path}
               key={index}
               name={animal.name}
               width="18rem"
@@ -51,6 +53,7 @@ const Catalogue = () => {
                 setDescription(animal.description);
                 setContinents(animal.continents);
                 setFamily(animal.family.name);
+                setImage(animal.image_path);
               }}
               link={true}
             ></Card>
@@ -58,6 +61,7 @@ const Catalogue = () => {
         </div>
       </section>
       <Modal Title={title} show={show} onClose={() => setShow(!show)}>
+        <img src={`http://127.0.0.1:8000/storage/${image}`} width="600" alt={title} ></img>
         <h6>Description</h6>
         <p>{description}</p>
         <h6 className="mt-3">Famille</h6>

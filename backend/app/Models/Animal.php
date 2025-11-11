@@ -10,7 +10,8 @@ class Animal extends Model
     protected $fillable = [
         'name',
         'family_id',
-        'description'
+        'description',
+        'image_path',
     ];
 
     public function family()

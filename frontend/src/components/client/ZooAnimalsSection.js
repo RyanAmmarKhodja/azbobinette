@@ -1,37 +1,29 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Card from "./Card";
 import { NavLink } from "react-router-dom";
+import api from "../../api";
 
-const animals = [
-  {
-    name: "Vipère aspic",
-    img: "https://upload.wikimedia.org/wikipedia/commons/9/9b/Vipera_aspis_aspis1.jpg",
-  },
-  {
-    name: "Otarie à fourrure australe",
-    img: "https://upload.wikimedia.org/wikipedia/commons/7/7a/Arctocephalus_tropicalis_-_Cape_Fur_Seal.jpg",
-  },
-  {
-    name: "Fossa de Madagascar",
-    img: "https://upload.wikimedia.org/wikipedia/commons/b/bb/Fossa_Fossa.jpg",
-  },
-  {
-    name: "Loup gris",
-    img: "https://upload.wikimedia.org/wikipedia/commons/5/59/Canis_lupus_lupus_qtl1.jpg",
-  },
-];
 
 const imgSource = "parrots.jpg";
 
 export default function ZooAnimalsSection() {
+  const [animals, setAnimals] = React.useState([]);
+
+  useEffect(() => {
+    
+      api.get(`animals/take`).then((response) => {
+        setAnimals(response.data);
+      });
+    
+  }, []);
   return (
     
       <div className="container">
         {/* Header Section */}
         <div className="row mb-5">
           <div className="col-md-6 d-flex " style={{marginRight:"-40px"}}>
-            <img src={imgSource} alt={animals[0].name} style={{width: "100%", height: "auto", zIndex:"1"}} />
+            <img src={imgSource} style={{width: "100%", height: "auto", zIndex:"1"}} />
           </div>
 
           <div className="col-md-6 text-md-end" style={{marginLeft:"-40px", zIndex:"5"}}>
@@ -50,7 +42,7 @@ export default function ZooAnimalsSection() {
         {/* Cards Section */}
         <div className="row g-4">
           {animals.map((animal, index) => (
-            <Card key={index} img={imgSource} name={animal.name} index={index} style={index % 2 === 0 ? { marginTop: "10px" } : {}} />
+            <Card key={animal.index} img={animal.image_path} name={animal.name} index={index} style={index % 2 === 0 ? { marginTop: "10px" } : {}} />
           ))}
         </div>
       </div>

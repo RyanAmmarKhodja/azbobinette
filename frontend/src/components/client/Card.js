@@ -1,13 +1,13 @@
 import { CirclePlus } from "lucide-react";
 import React from "react";
-import Modal from "../Modal";
+import api from "../../api";
 
 function Card(props) {
   return (
     <div className="col-sm-6 col-md-3" key={props.index} style={{width:`${props.width}`, maxHeight: '300px'}}>
       <div className="card border-0 shadow-sm h-100" style={{borderRadius:"0"}}>
         <img
-          src={props.img}
+          src={`http://127.0.0.1:8000/storage/${props.img}`}
           className="card-img-top"
           alt={props.name}
           style={{

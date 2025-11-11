@@ -18,6 +18,8 @@ const Animals = (props) => {
   const [families, setFamilies] = useState([]);
   const [familyId, setFamilyId] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [imagePath, setImagePath] = useState(null);
+  const [preview, setPreview] = useState(null);
 
   let data = {};
 
@@ -43,7 +45,6 @@ const Animals = (props) => {
       .finally(() => {
         setLoading(false);
       });
-
   }, []);
 
   // Submit function to handle both add and update
@@ -56,20 +57,32 @@ const Animals = (props) => {
       return updateAnimal(e);
     }
 
-    data = {
-      name,
-      family_id: familyId,
-      description,
-      continents: selectedContinents,
-    };
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("family_id", familyId);
+    formData.append("description", description);
 
+    // Continents (array)
+    selectedContinents.forEach((c, i) => {
+      formData.append(`continents[${i}]`, c);
+    });
+
+    // Only append if an image was selected
+    if (imagePath) {
+      formData.append("photo", imagePath); 
+    }
+    console.log("Image :", imagePath);
     api
-      .post("/animals/create", data)
+      .post("/animals/create", formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    })
       .then((res) => {
         console.log("Animal added:", res.data);
         //setShowModal(false);
         setAnimals([...animals, res.data.animal]);
         setSuccess("Animal added successfully");
+        setImagePath(null);
+        setPreview(null);
         setName("");
         setDescription("");
       })
@@ -113,6 +126,7 @@ const Animals = (props) => {
       name,
       family_id: familyId,
       description,
+      image_path: imagePath,
       continents: selectedContinents,
     };
     if (id) {
@@ -141,7 +155,16 @@ const Animals = (props) => {
           <button
             type="button"
             className="btn btn-outline-primary"
-            onClick={() => setShowModal(true)}
+            onClick={() => {
+              setShowModal(true);
+              setEditId(null);
+              setName("");
+              setDescription("");
+              setImagePath(null);
+              setPreview(null);
+              setSelectedContinents([]);
+              setFamilyId(families.length > 0 ? families[0].id : 1);
+            }}
           >
             <Plus /> Ajouter un animal
           </button>
@@ -235,6 +258,25 @@ const Animals = (props) => {
                   </option>
                 ))}
               </select>
+            </div>
+
+            <div>
+              <label for="formFile" className="form-label mt-4">
+                Image
+              </label>
+              <input
+                className="form-control"
+                type="file"
+                accept="image/*"
+                id="formFile"
+                onChange={(e) => {
+                  setImagePath(e.target.files[0]);
+                  setPreview(URL.createObjectURL(e.target.files[0]));
+                }}
+              />
+              <br />
+              {preview && <img src={preview} alt="preview" width={150} />}
+              <br />
             </div>
 
             {/* Checkbox to select multiple continents */}

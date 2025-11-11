@@ -10,31 +10,32 @@ class AnimalController extends Controller
     public function index()
     {
         $animals = Animal::with(['family', 'continents'])->get();
-        
+
         return $animals;
     }
 
     public function store(Request $request)
     {
-
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'family_id' => 'nullable|exists:families,id',
             'description' => 'nullable|string',
-            'image_path' => 'nullable|string',
+            'photo' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
             'continents' => 'array',
             'continents.*' => 'exists:continents,id',
         ]);
 
-        // Handle file upload 
+        $imagePath = null;
+
         if ($request->hasFile('photo')) {
-            $path = $request->file('photo')->store('animals', 'public');
-            $validated['image_path'] = $path;
+            $imagePath = $request->file('photo')->store('animals', 'public');
+            $validated['image_path'] = $imagePath;
         }
 
         $animal = Animal::create([
             'name' => $validated['name'],
-            'family_id' => $validated['family_id'],
+            'family_id' => $validated['family_id'] ?? null,
+            'image_path' => $imagePath,
             'description' => $validated['description'] ?? null,
         ]);
 
@@ -54,6 +55,11 @@ class AnimalController extends Controller
         return $animal;
     }
 
+    public function take()
+    {
+        $animals = Animal::take(4)->get();
+        return response()->json($animals);
+    }
 
     // Show the form for editing the specified animal.
 
@@ -72,9 +78,15 @@ class AnimalController extends Controller
             'name' => 'required|string|max:255',
             'family_id' => 'nullable|exists:families,id',
             'description' => 'nullable|string',
+            'photo' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
             'continents' => 'array',
             'continents.*' => 'exists:continents,id',
         ]);
+
+        if ($request->hasFile('photo')) {
+            $imagePath = $request->file('photo')->store('animals', 'public');
+            $validated['image_path'] = $imagePath;
+        }
 
         if (!empty($validated['continents'])) {
             $animal->continents()->sync($validated['continents']);
