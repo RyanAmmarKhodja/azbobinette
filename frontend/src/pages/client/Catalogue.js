@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import CatalogueHero from "../../components/client/CatalogueHero";
 import api from "../../api";
 import Card from "../../components/client/Card";
@@ -16,22 +16,41 @@ const Catalogue = () => {
   const [image, setImage] = React.useState("");
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState(null);
+  const [page, setPage] = useState(1);
+  const [lastPage, setLastPage] = useState(1);
 
+  
   useEffect(() => {
     setLoading(true);
-    api
-      .get("/animals")
-      .then((response) => {
-        setAnimals(response.data);
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.error("There was an error fetching the animals!", error);
-        setError(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    if (window.location.search) {
+      const params = new URLSearchParams(window.location.search);
+      const search = params.get("search");
+      api
+        .get(`/animals?search=${search}`)
+        .then((response) => {
+          setAnimals(response.data.data || response.data);
+        })
+        .catch((error) => {
+          console.error("There was an error fetching the animals!", error);
+          setError(error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    } else {
+      api
+        .get("/animals")
+        .then((response) => {
+          setAnimals(response.data.data || response.data);
+        })
+        .catch((error) => {
+          console.error("There was an error fetching the animals!", error);
+          setError(error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
   }, []);
   return (
     <div>
@@ -61,24 +80,28 @@ const Catalogue = () => {
         </div>
       </section>
       <Modal Title={title} show={show} onClose={() => setShow(!show)}>
-        <img src={`http://127.0.0.1:8000/storage/${image}`} width="600" alt={title} ></img>
+        <img
+          src={`http://127.0.0.1:8000/storage/${image}`}
+          width="600"
+          alt={title}
+        ></img>
         <h6>Description</h6>
         <p>{description}</p>
         <h6 className="mt-3">Famille</h6>
         <p>{family}</p>
         <h6>Continents</h6>
-        
-          {continents.map((continent, index) => (
-            <span key={continent.id}>{continent.name}. </span>
-          ))}
-        
-        
+
+        {continents.map((continent, index) => (
+          <span key={continent.id}>{continent.name}. </span>
+        ))}
       </Modal>
-      
-      
-      
+
       <Loading loading={loading} />
-      {error && <div className="alert alert-danger" role="alert">{error.message}</div>}
+      {error && (
+        <div className="alert alert-danger" role="alert">
+          {error.message}
+        </div>
+      )}
       <Footer />
     </div>
   );

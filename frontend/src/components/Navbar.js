@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthProvider";
 import { NavLink } from "react-router-dom";
@@ -9,6 +9,7 @@ function Navbar(props) {
   const [error, setError] = React.useState(null);
   const jungleActive = { color: "#1C7435", fontWeight: "bold" };
   
+  const [search, setSearch] = useState("");
 
   const submit = async () => {
     try {
@@ -85,8 +86,13 @@ function Navbar(props) {
                 className="form-control me-sm-2"
                 type="search"
                 placeholder="Search"
+                onChange={(e) => setSearch(e.target.value)}
+                value={search}
               />
-              <button className="btn btn-jungle my-2 my-sm-0" type="submit">
+              <button className="btn btn-jungle my-4 my-sm-0" type="submit" onClick={(e) => {
+                e.preventDefault();
+                navigate(`/catalogue?search=${search}`);
+              }}>
                 Search
               </button>
             </form>

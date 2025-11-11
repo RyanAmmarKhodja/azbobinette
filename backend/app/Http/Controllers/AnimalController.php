@@ -7,9 +7,29 @@ use App\Models\Animal;
 
 class AnimalController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $animals = Animal::with(['family', 'continents'])->get();
+        $query = Animal::query()->with(['family', 'continents']);
+
+        if ($search = $request->input('search')) {
+            $query->where('name', 'like', "%{$search}%")
+                ->orWhere('description', 'like', "%{$search}%");
+        }
+
+        // Filter by family
+        if ($familyId = $request->input('family_id')) {
+            $query->where('family_id', $familyId);
+        }
+
+        // Filter by continent
+        if ($continentId = $request->input('continent_id')) {
+            $query->whereHas('continents', function ($q) use ($continentId) {
+                $q->where('continents.id', $continentId);
+            });
+        }
+
+        // Optional: pagination (or limit)
+        $animals = $query->orderBy('created_at', 'desc')->paginate(10);
 
         return $animals;
     }
