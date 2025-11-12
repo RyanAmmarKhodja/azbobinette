@@ -16,27 +16,33 @@ const Animals = (props) => {
   const [selectedContinents, setSelectedContinents] = useState([]);
   const [continents, setContinents] = useState([]);
   const [families, setFamilies] = useState([]);
-  const [familyId, setFamilyId] = useState(1);
+  const [familyId, setFamilyId] = useState(null);
+  
   const [loading, setLoading] = useState(false);
   const [imagePath, setImagePath] = useState(null);
   const [preview, setPreview] = useState(null);
 
-  let data = {};
+  // Removed global data variable; will declare inside updateAnimal
 
   // Fetch continents and animals on component mount
   useEffect(() => {
+
     setLoading(true);
+
+    // Fetch continents and families
     api.get("/continents").then((res) => setContinents(res.data));
-
     api.get("/family").then((res) => {
-      console.log("Families fetched:", res.data);
       setFamilies(res.data);
+      if ((res.data || []).length > 0) {
+        setFamilyId(res.data[0].id);
+      }
     });
-
+    
+    // Fetch animals
     api
       .get("/animals")
       .then((res) => {
-        setAnimals(res.data);
+        setAnimals(res.data.data || res.data);
         console.log("Animals fetched:", res.data);
       })
       .catch((err) => {
@@ -87,7 +93,7 @@ const Animals = (props) => {
         setDescription("");
       })
       .catch((err) => {
-        setError("Error adding animal", err);
+        setError(`Error adding animal: ${err?.message || err}`);
         console.error("Error adding animal:", err);
       });
   };
@@ -122,7 +128,7 @@ const Animals = (props) => {
   const updateAnimal = (e) => {
     e.preventDefault();
     const id = editId;
-    data = {
+    const data = {
       name,
       family_id: familyId,
       description,
@@ -142,7 +148,7 @@ const Animals = (props) => {
           setEditId(null);
         })
         .catch((err) => {
-          setError("Error updating animal", err);
+          setError(`Error updating animal: ${err?.message || err}`);
           console.error("Error updating animal:", err);
         });
     }
@@ -202,14 +208,14 @@ const Animals = (props) => {
                   <button
                     type="button"
                     className="btn btn-warning btn-sm mx-2"
-                    onClick={editAnimal.bind(this, animal.id)}
+                    onClick={() => editAnimal(animal.id)}
                   >
                     Edit
                   </button>
                   <button
                     type="button"
                     className="btn btn-danger btn-sm mx-2"
-                    onClick={deleteAnimal.bind(this, animal.id)}
+                    onClick={() => deleteAnimal(animal.id)}
                   >
                     Delete
                   </button>
@@ -229,7 +235,7 @@ const Animals = (props) => {
         <form action="">
           <fieldset>
             <div>
-              <label for="text" className="form-label mt-4">
+              <label htmlFor="text" className="form-label mt-4">
                 Animal Name
               </label>
               <input
@@ -243,14 +249,14 @@ const Animals = (props) => {
             </div>
 
             <div>
-              <label for="exampleSelect1" className="form-label mt-4">
+              <label htmlFor="exampleSelect1" className="form-label mt-4">
                 Famille
               </label>
               <select
                 className="form-select"
                 id="exampleSelect1"
                 value={familyId}
-                onChange={(e) => setFamilyId(e.target.value)}
+                onChange={(e) => setFamilyId(parseInt(e.target.value, 10))}
               >
                 {families.map((family) => (
                   <option key={family.id} value={family.id}>
@@ -261,7 +267,7 @@ const Animals = (props) => {
             </div>
 
             <div>
-              <label for="formFile" className="form-label mt-4">
+              <label htmlFor="formFile" className="form-label mt-4">
                 Image
               </label>
               <input
@@ -305,7 +311,7 @@ const Animals = (props) => {
                 <label
                   key={continent.id}
                   className="form-check-label"
-                  for={`flexCheckDefault-${continent}`}
+                  htmlFor={`flexCheckDefault-${continent.id}`}
                 >
                   {continent.name}
                 </label>
@@ -313,14 +319,14 @@ const Animals = (props) => {
             ))}
 
             <div>
-              <label for="textarea" className="form-label mt-4">
+              <label htmlFor="textarea" className="form-label mt-4">
                 Animal Description
               </label>
               <textarea
                 className="form-control"
                 id="description"
                 rows="3"
-                placeholder="Enter family description"
+                placeholder="Enter animal description"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               ></textarea>

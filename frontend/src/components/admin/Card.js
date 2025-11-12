@@ -20,7 +20,7 @@ const Card = (props) => {
       const fetchCount = async () => {
         try {
           const res = await api.get("/animals");
-          setCount(res.data.length);
+          setCount(res.data.data.length);
         } catch (err) {
           console.error(err);
         }

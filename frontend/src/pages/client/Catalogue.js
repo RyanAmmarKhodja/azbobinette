@@ -1,10 +1,11 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import CatalogueHero from "../../components/client/CatalogueHero";
 import api from "../../api";
 import Card from "../../components/client/Card";
 import Footer from "../../components/client/Footer";
 import Modal from "../../components/Modal";
 import Loading from "../../components/Loading";
+import { useSearchParams } from "react-router-dom";
 
 const Catalogue = () => {
   const [animals, setAnimals] = React.useState([]);
@@ -18,13 +19,13 @@ const Catalogue = () => {
   const [error, setError] = React.useState(null);
   const [page, setPage] = useState(1);
   const [lastPage, setLastPage] = useState(1);
+  const [searchParams] = useSearchParams();
+  const search = searchParams.get("search") || "";
 
-  
   useEffect(() => {
     setLoading(true);
-    if (window.location.search) {
-      const params = new URLSearchParams(window.location.search);
-      const search = params.get("search");
+    setAnimals("");
+    if (search) {
       api
         .get(`/animals?search=${search}`)
         .then((response) => {
@@ -51,7 +52,7 @@ const Catalogue = () => {
           setLoading(false);
         });
     }
-  }, []);
+  }, [search]);
   return (
     <div>
       <section>
@@ -60,7 +61,7 @@ const Catalogue = () => {
 
       <section id="catalogue">
         <div className="d-flex gap-4 m-5 flex-wrap justify-content-center">
-          {animals.map((animal, index) => (
+          {animals && animals.map((animal, index) => (
             <Card
               img={animal.image_path}
               key={index}

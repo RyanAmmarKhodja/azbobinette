@@ -1,15 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthProvider";
-import { NavLink } from "react-router-dom";
+import { NavLink, useSearchParams } from "react-router-dom";
+import api from "../api"
 
 function Navbar(props) {
   const auth = useAuth();
   const navigate = useNavigate();
   const [error, setError] = React.useState(null);
   const jungleActive = { color: "#1C7435", fontWeight: "bold" };
-  
+
   const [search, setSearch] = useState("");
+
+
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    navigate(`/catalogue?search=${encodeURIComponent(search)}`);
+  };
 
   const submit = async () => {
     try {
@@ -27,7 +35,10 @@ function Navbar(props) {
         style={{ position: "fixed", width: "100vw", zIndex: 10 }}
         data-bs-theme="light"
       >
-        <div className="container-fluid" style={props.loggedIn ? { paddingLeft: "90px" } : { }}>
+        <div
+          className="container-fluid"
+          style={props.loggedIn ? { paddingLeft: "90px" } : {}}
+        >
           <NavLink
             className={"navbar-brand"}
             to="/"
@@ -81,7 +92,12 @@ function Navbar(props) {
                 </NavLink>
               </li>
             </ul>
-            <form className="d-flex">
+
+            {/* Search Field */}
+            <form
+              className="d-flex"
+              onSubmit={handleSearch}
+            >
               <input
                 className="form-control me-sm-2"
                 type="search"
@@ -89,22 +105,21 @@ function Navbar(props) {
                 onChange={(e) => setSearch(e.target.value)}
                 value={search}
               />
-              <button className="btn btn-jungle my-4 my-sm-0" type="submit" onClick={(e) => {
-                e.preventDefault();
-                navigate(`/catalogue?search=${search}`);
-              }}>
+              <button className="btn btn-jungle my-4 my-sm-0" type="submit">
                 Search
               </button>
             </form>
-            {props.loggedIn &&<a
-              className="btn btn-outline-secondary"
-              href="#"
-              onClick={submit}
-              style={{ marginLeft: "20px" }}
-            >
-              Logout
-            </a>}
-            
+            {/* End Search Field */}
+            {props.loggedIn && (
+              <a
+                className="btn btn-outline-secondary"
+                href="#"
+                onClick={submit}
+                style={{ marginLeft: "20px" }}
+              >
+                Logout
+              </a>
+            )}
           </div>
         </div>
       </nav>
