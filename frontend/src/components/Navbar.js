@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthProvider";
-import { NavLink, useSearchParams } from "react-router-dom";
-import api from "../api"
+import { NavLink } from "react-router-dom";
+
 
 function Navbar(props) {
   const auth = useAuth();

@@ -5,29 +5,47 @@ import Card from "../../components/client/Card";
 import Footer from "../../components/client/Footer";
 import Modal from "../../components/Modal";
 import Loading from "../../components/Loading";
+import Filter from "../../components/client/Filter";
 import { useSearchParams } from "react-router-dom";
 
 const Catalogue = () => {
-  const [animals, setAnimals] = React.useState([]);
-  const [show, setShow] = React.useState(false);
-  const [title, setTitle] = React.useState("");
-  const [description, setDescription] = React.useState("");
-  const [continents, setContinents] = React.useState([]);
-  const [family, setFamily] = React.useState("");
-  const [image, setImage] = React.useState("");
-  const [loading, setLoading] = React.useState(true);
-  const [error, setError] = React.useState(null);
+  const [animals, setAnimals] = useState([]);
+  const [show, setShow] = useState(false);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [continents, setContinents] = useState([]);
+  const [family, setFamily] = useState("");
+  const [image, setImage] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
   const [lastPage, setLastPage] = useState(1);
   const [searchParams] = useSearchParams();
   const search = searchParams.get("search") || "";
+  const queryContinent = searchParams.get("continent") || "";
+  const queryFamily = searchParams.get("family_id") || "";
 
   useEffect(() => {
     setLoading(true);
     setAnimals("");
+    const params = new URLSearchParams();
+
     if (search) {
+      params.append("search", search);
+    }
+    if (queryFamily) {
+      params.append("family_id", queryFamily);
+    }
+    if (queryContinent) {
+      params.append("continent", queryContinent);
+    }
+
+    const queryString = params.toString();
+
+
+    if (queryString) {
       api
-        .get(`/animals?search=${search}`)
+        .get(`/animals?${queryString}`)
         .then((response) => {
           setAnimals(response.data.data || response.data);
         })
@@ -52,32 +70,37 @@ const Catalogue = () => {
           setLoading(false);
         });
     }
-  }, [search]);
+  }, [search, queryContinent, queryFamily]);
+
   return (
     <div>
       <section>
         <CatalogueHero />
       </section>
+      <section>
+        <Filter />
+      </section>
 
       <section id="catalogue">
         <div className="d-flex gap-4 m-5 flex-wrap justify-content-center">
-          {animals && animals.map((animal, index) => (
-            <Card
-              img={animal.image_path}
-              key={index}
-              name={animal.name}
-              width="18rem"
-              onClick={() => {
-                setTitle(animal.name);
-                setShow(true);
-                setDescription(animal.description);
-                setContinents(animal.continents);
-                setFamily(animal.family.name);
-                setImage(animal.image_path);
-              }}
-              link={true}
-            ></Card>
-          ))}
+          {animals &&
+            animals.map((animal, index) => (
+              <Card
+                img={animal.image_path}
+                key={index}
+                name={animal.name}
+                width="18rem"
+                onClick={() => {
+                  setTitle(animal.name);
+                  setShow(true);
+                  setDescription(animal.description);
+                  setContinents(animal.continents);
+                  setFamily(animal.family.name);
+                  setImage(animal.image_path);
+                }}
+                link={true}
+              ></Card>
+            ))}
         </div>
       </section>
       <Modal Title={title} show={show} onClose={() => setShow(!show)}>
