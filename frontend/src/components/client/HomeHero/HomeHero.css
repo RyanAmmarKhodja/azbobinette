@@ -1,0 +1,34 @@
+.hero {
+    background-size: cover;
+    background-position: center;
+    height: 120vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+/* Mobile First */
+@media (max-width: 600px) {
+    .hero{
+        background-position: 60%;
+        
+    }
+
+    .hero div div{
+        text-align: center;
+    }
+    
+
+}
+
+/* Tablet */
+@media (min-width: 600px) and (max-width: 900px) {}
+
+/* Desktop */
+@media (min-width: 900px) {
+    .hero{
+        clip-path: ellipse(100% 66% at 36% 31%);
+    }
+    
+}
+ 

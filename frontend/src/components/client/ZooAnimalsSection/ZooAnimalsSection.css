@@ -1,0 +1,13 @@
+/* Mobile First */
+@media (max-width: 600px) {
+    
+}
+
+/* Tablet */
+@media (min-width: 600px) and (max-width: 900px) {}
+
+/* Small Laptop */
+@media (min-width: 900px) and (max-width: 1200px) {}
+
+/* Large Desktop */
+@media (min-width: 1200px) {}

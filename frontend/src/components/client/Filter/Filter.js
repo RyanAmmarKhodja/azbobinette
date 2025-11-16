@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import api from "../../api";
+import api from "../../../api";
 import { useNavigate } from "react-router-dom";
 
 function Filter() {
@@ -42,11 +42,6 @@ function Filter() {
     <>
       <form
         onSubmit={handleSearch}
-        style={{
-          display: "inline-flex",
-          justifyContent: "flex-end",
-          alignItems: "center",
-        }}
       >
         <div
           style={{

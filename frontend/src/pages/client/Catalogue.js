@@ -5,7 +5,7 @@ import Card from "../../components/client/Card";
 import Footer from "../../components/client/Footer";
 import Modal from "../../components/Modal";
 import Loading from "../../components/Loading";
-import Filter from "../../components/client/Filter";
+import Filter from "../../components/client/Filter/Filter";
 import { useSearchParams } from "react-router-dom";
 
 const Catalogue = () => {

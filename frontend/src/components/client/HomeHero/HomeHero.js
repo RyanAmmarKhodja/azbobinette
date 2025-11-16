@@ -1,18 +1,14 @@
 import React from "react";
+import "./HomeHero.css";
 
 const Hero = () => {
   const overlayColor = "rgba(0, 0, 0, 0.5)";
+
   return (
     <div
-      className="hero-background d-flex align-items-center justify-content-center text-white text-center"
+      className="text-white text-center hero"
       style={{
-        
-        backgroundImage: `linear-gradient(${overlayColor}, ${overlayColor}), url(hero.jpg)`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        height: "120vh",
-        clipPath: "ellipse(100% 66% at 36% 31%)",
-      }}
+        backgroundImage: `linear-gradient(${overlayColor}, ${overlayColor}), url(hero.jpg)`}}
     >
       <div className="container row" style={{ textAlign: "start" }}>
         <div className="col">
@@ -28,7 +24,7 @@ const Hero = () => {
           <a className="btn btn-jungle" href="#desc" style={{width:"10rem"}}>Découvrir</a>
           
         </div>
-        <div className="col">
+        <div className="col-lg">
             </div>
       </div>
     </div>

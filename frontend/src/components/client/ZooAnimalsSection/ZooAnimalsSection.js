@@ -1,9 +1,9 @@
 import React, {useEffect} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Card from "./Card";
+import Card from "../Card";
 import { NavLink } from "react-router-dom";
-import api from "../../api";
-
+import api from "../../../api";
+import "./ZooAnimalsSection.css";
 
 const imgSource = "parrots.jpg";
 
