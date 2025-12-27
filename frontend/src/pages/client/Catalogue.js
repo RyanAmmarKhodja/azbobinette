@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import CatalogueHero from "../../components/client/CatalogueHero";
+import CatalogueHero from "../../components/client/CataloguePage/CatalogueHero";
 import api from "../../api";
 import Card from "../../components/client/Card";
 import Footer from "../../components/client/Footer";
 import Modal from "../../components/Modal";
 import Loading from "../../components/Loading";
-import Filter from "../../components/client/Filter/Filter";
+import Filter from "../../components/client/CataloguePage/Filter/Filter";
 import { useSearchParams } from "react-router-dom";
 
 const Catalogue = () => {
