@@ -1,0 +1,51 @@
+.hero {
+    background-size: cover;
+    background-position: center;
+    
+    height: 100vh;
+
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+  }
+
+  .hero-content{
+    background-color: rgba(255, 255, 255, 0.9);
+    height:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 42%;
+    color: black;
+    text-align: start;
+    padding-left: 2em;
+    padding-right: 1em;
+  }
+
+  .hero-content hr{
+    width: 100%;
+    border-width: 1px;
+    opacity: 1;
+  }
+  
+/* Mobile First */
+@media (max-width: 600px) {
+    .hero{
+        background-position: 60%;
+        
+    }
+
+    .hero div div{
+        text-align: center;
+    }
+    
+
+}
+
+/* Tablet */
+@media (min-width: 600px) and (max-width: 900px) {}
+
+/* Desktop */
+
+ 

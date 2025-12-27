@@ -1,24 +1,32 @@
 import React from "react";
-import Hero from "../../components/client/HomeHero/HomeHero";
-import ZooAnimalsSection from "../../components/client/ZooAnimalsSection/ZooAnimalsSection";
+import Hero from "../../components/client/Home/Hero/Hero";
+import ZooAnimalsSection from "../../components/client/CataloguePage/ZooAnimalsSection/ZooAnimalsSection";
 import Footer from "../../components/client/Footer";
-import HomeDescription from "../../components/client/HomeDescription/HomeDescription";
+import Description from "../../components/client/Home/Description/Description";
+import Categories from "../../components/client/Home/Categories/Categories"
 
 
 const Home = () => {
   return (
     <div style={{ backgroundColor: "#F7F7E8", overflowX: "hidden" }}>
-      <Hero />
-
-      <section id="desc">
-        <HomeDescription />
-        
+      <section className="my-5">
+        <Hero />
       </section>
+
+      <section id="desc" className="my-5">
+        <Description/>
+      </section>
+      
+      <section id="categories" className="my-5">
+        <Categories/>
+      </section>
+
+
 
       <section
         id="more-info"
         className="py-5"
-        style={{ marginTop: "-80px", marginRight: "-80px" }}
+        style={{ marginRight: "-80px" }}
       >
         <ZooAnimalsSection />
       </section>
