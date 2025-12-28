@@ -1,7 +1,7 @@
 import React from "react";
 import "./Hero.css";
-import PrimaryButton from "../../PrimaryButton";
-import SecondaryButton from "../../SecondaryButton"
+import PrimaryButton from "../../Buttons/PrimaryButton";
+import SecondaryButton from "../../Buttons/SecondaryButton"
 
 
 const Hero = () => {

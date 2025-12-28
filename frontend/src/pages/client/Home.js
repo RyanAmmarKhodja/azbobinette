@@ -4,6 +4,7 @@ import ZooAnimalsSection from "../../components/client/CataloguePage/ZooAnimalsS
 import Footer from "../../components/client/Footer";
 import Description from "../../components/client/Home/Description/Description";
 import Categories from "../../components/client/Home/Categories/Categories"
+import Collection from "../../components/client/Home/Collection/Collection";
 
 
 const Home = () => {
@@ -21,14 +22,8 @@ const Home = () => {
         <Categories/>
       </section>
 
-
-
-      <section
-        id="more-info"
-        className="py-5"
-        style={{ marginRight: "-80px" }}
-      >
-        <ZooAnimalsSection />
+      <section className="my-5">
+        <Collection/>
       </section>
 
       <Footer />

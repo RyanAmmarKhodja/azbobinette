@@ -5,3 +5,12 @@
     flex-direction: row;
     flex-wrap: wrap;
 }
+
+.brush-stroke{
+    background-color: #9fb072;
+    background-image: linear-gradient(rgba(159, 176, 114, 0.9),rgba(159, 176, 114, 0.9)), url('../../../../../public/zoo.jpg');
+    height: 15em;
+    background-size:cover;
+    background-position:center;
+    color:#f8f8f0;
+}
