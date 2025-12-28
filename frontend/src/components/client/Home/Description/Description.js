@@ -1,6 +1,6 @@
 import React from "react";
 import { ChevronsDown } from "lucide-react";
-import PrimaryButton from "../../PrimaryButton";
+import PrimaryButton from "../../Buttons/PrimaryButton";
 
 function HomeDescription() {
   return (

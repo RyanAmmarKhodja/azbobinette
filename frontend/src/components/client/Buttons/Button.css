@@ -1,0 +1,9 @@
+.primary-button:hover {
+  background-color: #c66325 !important;
+
+}
+
+
+.secondary-button:hover {
+    background-color: rgba(0,0,0,0.1) !important;
+}
