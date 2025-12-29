@@ -9,8 +9,16 @@
 .brush-stroke{
     background-color: #9fb072;
     background-image: linear-gradient(rgba(159, 176, 114, 0.9),rgba(159, 176, 114, 0.9)), url('../../../../../public/zoo.jpg');
-    height: 15em;
+    height: max-content;
     background-size:cover;
     background-position:center;
     color:#f8f8f0;
+
+    padding: 2em;
+}
+
+@media(max-width:600px ){
+    .brush-stroke{
+        height: max-content;
+    }
 }

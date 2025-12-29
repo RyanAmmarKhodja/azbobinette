@@ -1,0 +1,19 @@
+.gallery-card {
+  position: relative;
+  overflow: hidden;
+  color: white;
+  margin: 1em;
+  border-radius: 0;
+}
+
+@media (max-width: 600px) {
+  .gallery-card {
+    margin: 0 !important;
+  }
+
+
+  .col{
+    margin:0;
+    padding: 2px !important;
+  }
+}

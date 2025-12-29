@@ -7,3 +7,14 @@
 .secondary-button:hover {
     background-color: rgba(0,0,0,0.1) !important;
 }
+
+
+@media (max-width: 600px) {
+  .primary-button{
+    margin-top: .5rem;
+  }
+
+  .secondary-button{
+    margin-top: .5rem;
+  }
+}

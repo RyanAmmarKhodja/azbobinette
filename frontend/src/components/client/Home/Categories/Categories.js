@@ -26,7 +26,7 @@ function Categories() {
               <Card img="./deer.jpg" height="18em"/>
             </div>
           </div>
-          <div className="col mt-4">
+          <div className="col mt-4 giraffe">
             <Card img="./giraffes.jpg" height="32em"/>
           </div>
           <div className="col text-start">
