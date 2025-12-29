@@ -1,0 +1,30 @@
+ .img-container {
+    justify-content: flex-end;
+  }
+
+  .description-container{
+   
+    text-align: start;align-items: center;
+  }
+
+  .description-container div{
+     max-width: 60%; 
+     
+  }
+
+/* Mobile First */
+@media (max-width: 600px) {
+  .img-container {
+    justify-content: center;
+  }
+
+  
+  .description-container{
+    justify-content: center;
+    text-align: center;
+  }
+   .description-container div{
+     max-width: 90%; 
+  }
+  
+}

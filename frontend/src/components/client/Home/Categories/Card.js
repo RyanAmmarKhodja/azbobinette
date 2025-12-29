@@ -1,14 +1,10 @@
 import React from "react";
+import "./Card.css"
 
 function Card(props) {
   const cardStyle = {
-  position: "relative",
-  overflow: "hidden",
-  color: "white",
   height: `${props.height}`,
   width: `${props.width}`,
-  margin: "1em",
-  borderRadius: "0",
 };
 
 const backgroundStyle = {
@@ -28,7 +24,7 @@ const backgroundStyle = {
 return (
   <div
     style={cardStyle}
-    className="category-card d-flex flex-column justify-content-end p-3 text-start"
+    className="gallery-card d-flex flex-column justify-content-end p-3 text-start"
   >
     <div className="card-background" style={backgroundStyle}></div>
     <div className="inner" style={{ position: "relative", zIndex: 2 }}>
