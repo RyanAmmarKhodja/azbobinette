@@ -4,16 +4,7 @@
     padding-bottom: 2em;
 }
 
-.header div{
-    display: inline-flex;
-    position: relative;
-}
-
 .header div a {
-    position: absolute;
-    left:auto;
-    right: 0;
-    top: -80%;
 
     border-radius: 2em;
     background-color: rgba(255,255,255,0);
@@ -23,9 +14,34 @@
     padding: .5em 1em .5em 1em;
     font-weight: 600;
     text-decoration:none;
+    width: 10rem;
+
+    float: right;
     
+    
+}
+
+.header div{
+    align-content: center;
 }
 
 .header div a:hover {
     background-color: rgba(0,0,0,0.1) !important;
+}
+
+
+@media (max-width: 600px) {
+    .header div a{
+        float: none;
+        
+
+    }
+
+    .header div {
+        text-align: center;
+    }
+
+    .row .col-sm-8{
+        text-align: center;
+    }
 }

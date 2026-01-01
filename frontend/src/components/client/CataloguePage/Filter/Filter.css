@@ -1,26 +1,24 @@
-input, select, .button {
+input,
+select,
+.button {
   background: #f8f8f5;
   border: 1px solid #eaeaea;
   border-radius: 8px;
 }
 
-input[type=text]{
+input[type="text"] {
   width: 100%;
 }
 
-button{
+button {
   height: fit-content;
 }
 
-button:hover{
+button:hover {
   background-color: #f8f8f548;
 }
 
-.filter-buttons{
-  float: left;
-}
-
-a{
+a {
   cursor: pointer;
 }
 /* Mobile First */
@@ -28,5 +26,24 @@ a{
   form {
     display: flex;
     flex-direction: column;
+  }
+
+  .filter-container {
+    padding: 0 !important;
+    width: 100%;
+    display: flex;
+
+    justify-content: space-between;
+  }
+
+  .filter-container select {
+    width: 100%;
+  }
+
+  .filter-container select:first-child {
+    margin-right: 4px;
+  }
+
+  button {
   }
 }

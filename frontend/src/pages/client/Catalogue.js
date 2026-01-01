@@ -107,10 +107,11 @@ const Catalogue = () => {
 
       <Modal Title={title} show={show} onClose={() => setShow(!show)}>
         <div className="row">
-          <div className="col">
+          <div className="col-sm-8 col-md-6">
             <img
               src={`http://127.0.0.1:8000/storage/${image}`}
               width="600"
+              className="img-fluid"
               alt={title}
               style={{borderRadius:"1em"}}
             ></img>

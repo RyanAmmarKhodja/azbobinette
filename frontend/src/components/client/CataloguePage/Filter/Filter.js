@@ -70,9 +70,10 @@ function Filter() {
         ></input>
 
         <div className="row">
-          <div className="col text-start">
-            <select
-              className="my-4 p-2 px-3"
+          <div className="col-sm-8 col-md-6 text-md-start filter-container">
+            
+              <select
+              className="my-4 p-2 px-3 mr-2"
               value={family}
               onChange={(e) => setFamily(e.target.value)}
             >
@@ -87,7 +88,7 @@ function Filter() {
             </select>
 
             <select
-              className="my-4 p-2 px-3 mx-2"
+              className="my-4 p-2 px-3 mx-md-2"
               value={continent}
               onChange={(e) => setContinent(e.target.value)}
             >
@@ -100,13 +101,15 @@ function Filter() {
                 </option>
               ))}
             </select>
+            
+            
           </div>
           <div className="col text-end">
             {(family || continent || search) &&
             <a className="mx-3" onClick={clearFilters}>Clear Filters</a>
             }
             
-            <button className="my-4 p-2 px-3 button" type="submit">
+            <button className="my-md-4 p-2 px-3  button" type="submit">
               Recherche
             </button>
           </div>
