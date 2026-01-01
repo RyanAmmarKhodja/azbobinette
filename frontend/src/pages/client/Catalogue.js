@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import CatalogueHero from "../../components/client/CataloguePage/CatalogueHero";
+import Hero from "../../components/client/CataloguePage/Hero/Hero";
 import api from "../../api";
 import Card from "../../components/client/Card";
 import Footer from "../../components/client/Footer";
@@ -18,8 +18,6 @@ const Catalogue = () => {
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [page, setPage] = useState(1);
-  const [lastPage, setLastPage] = useState(1);
   const [searchParams] = useSearchParams();
   const search = searchParams.get("search") || "";
   const queryContinent = searchParams.get("continent") || "";
@@ -41,7 +39,6 @@ const Catalogue = () => {
     }
 
     const queryString = params.toString();
-
 
     if (queryString) {
       api
@@ -75,20 +72,24 @@ const Catalogue = () => {
   return (
     <div>
       <section>
-        <CatalogueHero />
+        <Hero />
       </section>
-      <section>
+      <section className="my-4">
         <Filter />
       </section>
 
-      <section id="catalogue">
-        <div className="d-flex gap-4 m-5 flex-wrap justify-content-center">
+      <section
+        id="catalogue"
+        style={{ display: "flex", justifyContent: "center" }}
+      >
+        <div className=" my-5 row mx-5 px-0 gap-2">
           {animals &&
             animals.map((animal, index) => (
               <Card
                 img={animal.image_path}
                 key={index}
                 name={animal.name}
+                description={animal.description}
                 width="18rem"
                 onClick={() => {
                   setTitle(animal.name);
@@ -103,21 +104,30 @@ const Catalogue = () => {
             ))}
         </div>
       </section>
-      <Modal Title={title} show={show} onClose={() => setShow(!show)}>
-        <img
-          src={`http://127.0.0.1:8000/storage/${image}`}
-          width="600"
-          alt={title}
-        ></img>
-        <h6>Description</h6>
-        <p>{description}</p>
-        <h6 className="mt-3">Famille</h6>
-        <p>{family}</p>
-        <h6>Continents</h6>
 
-        {continents.map((continent, index) => (
-          <span key={continent.id}>{continent.name}. </span>
-        ))}
+      <Modal Title={title} show={show} onClose={() => setShow(!show)}>
+        <div className="row">
+          <div className="col">
+            <img
+              src={`http://127.0.0.1:8000/storage/${image}`}
+              width="600"
+              alt={title}
+              style={{borderRadius:"1em"}}
+            ></img>
+          </div>
+          <div className="col text-start">
+            <h3>{title}</h3>
+            <h6>Description</h6>
+            <p>{description}</p>
+            <h6 className="mt-3">Famille</h6>
+            <p>{family}</p>
+            <h6>Continents</h6>
+
+            {continents.map((continent, index) => (
+              <span key={continent.id}>{continent.name}. </span>
+            ))}
+          </div>
+        </div>
       </Modal>
 
       <Loading loading={loading} />

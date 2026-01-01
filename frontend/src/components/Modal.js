@@ -21,6 +21,9 @@ export default function Modal({ show, title, children, onClose }) {
       <div
         className="bg-white p-4 rounded shadow"
         style={{ minWidth: "600px", overflowY: "auto", maxHeight: "80vh" }}
+        onMouseLeave={(e)=>{
+          onmousedown=onClose;
+        }}
       >
         <div className="d-flex justify-content-between align-items-center mb-3">
           <h5>{title}</h5>

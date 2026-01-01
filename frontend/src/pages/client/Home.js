@@ -1,6 +1,5 @@
 import React from "react";
 import Hero from "../../components/client/Home/Hero/Hero";
-import ZooAnimalsSection from "../../components/client/CataloguePage/ZooAnimalsSection/ZooAnimalsSection";
 import Footer from "../../components/client/Footer";
 import Description from "../../components/client/Home/Description/Description";
 import Categories from "../../components/client/Home/Categories/Categories"

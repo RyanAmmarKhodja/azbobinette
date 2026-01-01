@@ -1,0 +1,31 @@
+.header{
+    justify-content: end;
+    text-align: start;
+    padding-bottom: 2em;
+}
+
+.header div{
+    display: inline-flex;
+    position: relative;
+}
+
+.header div a {
+    position: absolute;
+    left:auto;
+    right: 0;
+    top: -80%;
+
+    border-radius: 2em;
+    background-color: rgba(255,255,255,0);
+    color:white;
+    border: 2px solid #fff;
+    color: #fff;
+    padding: .5em 1em .5em 1em;
+    font-weight: 600;
+    text-decoration:none;
+    
+}
+
+.header div a:hover {
+    background-color: rgba(0,0,0,0.1) !important;
+}
