@@ -44,7 +44,7 @@ function Collection() {
 
         </div>
         <div className="w100 text-center my-4">
-          <PrimaryButton text="View More" link="catalogue"/>
+          <PrimaryButton text="Voir Plus" link="catalogue"/>
         </div>
         
       </div>

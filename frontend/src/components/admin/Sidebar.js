@@ -46,7 +46,7 @@ export default function CollapsibleSidebar() {
             {!isCollapsed && (
               <h3 style={{ color: 'white', fontSize: '24px', fontWeight: 600, margin: 0 }}>
                 <PawPrint size={24} style={{ marginRight: '8px', verticalAlign: 'middle' }} />
-                Wildlife DB
+                Azbobinette
               </h3>
             )}
             {isCollapsed && (

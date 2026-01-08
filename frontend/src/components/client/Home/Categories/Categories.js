@@ -39,7 +39,7 @@ function Categories() {
           </div>
         </div>
         <div className="my-5">
-          <PrimaryButton text="DISCOVER MORE" link="#stats" />
+          <PrimaryButton text="DÉCOUVRIR PLUS" link="#stats" />
         </div>
 
         {/* STATS */}
@@ -55,7 +55,7 @@ function Categories() {
             >
               <PawPrint width={80} height={80} />
               <h1>400+</h1>
-              <h4>Animals</h4>
+              <h4>Animaux</h4>
             </div>
             <div
               className="col d-flex justify-content-center align-items-center mx-4"
@@ -63,7 +63,7 @@ function Categories() {
             >
               <Dog width={80} height={80} />
               <h1>280+</h1>
-              <h4>Species</h4>
+              <h4>Especes</h4>
             </div>
             <div
               className="col d-flex justify-content-center align-items-center mx-4"
@@ -79,7 +79,7 @@ function Categories() {
             >
               <Users width={80} height={80} />
               <h1>2M+</h1>
-              <h4> Visitors</h4>
+              <h4> Visiteurs</h4>
             </div>
           </div>
         </div>

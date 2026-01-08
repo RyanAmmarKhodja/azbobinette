@@ -16,8 +16,8 @@ const Hero = () => {
           inoubliable avec nous.
         </p>
         <div style={{ textAlign: "left", width: "100%" }}>
-          <PrimaryButton text="BOOK A TICKET" />
-          <SecondaryButton text="EXPLORE OUR ZOO" link="#desc" />
+          <PrimaryButton text="PREPARER SA VISITE" link="about"/>
+          <SecondaryButton text="EXPLORER LE ZOO" link="#desc" />
         </div>
       </div>
     </div>

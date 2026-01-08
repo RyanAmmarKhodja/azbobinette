@@ -25,7 +25,7 @@ function HomeDescription() {
               Ressentez-vous plus proche de la nature au parc d'Azbobinette.
             </p>
 
-            <PrimaryButton text="EXPLORE OUR ANIMALS" link="#categories" />
+            <PrimaryButton text="EXPLORER NOS ANIMAUX" link="#categories" />
           </div>
         </div>
       </div>
