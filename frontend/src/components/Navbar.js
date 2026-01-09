@@ -63,7 +63,7 @@ function Navbar(props) {
             }
             onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
           >
-            <span style={{ marginRight: "8px" }}>🌿</span> Azbobinette
+            <span style={{ marginRight: "8px" }}></span> Azbobinette
           </NavLink>
 
           <button
