@@ -134,7 +134,7 @@ azbobinette/
 
 Home Page Gallery
 
-<p align="center"> <img src="preview/accueil2.png" width="45%" /> <img src="preview/accueil3.png" width="45%" /> <img src="preview/accueil4.png" width="90%" /> </p>
+<p align="center"> <img src="preview/accueil2.png" width="45%" /> <img src="preview/accueil3.png" width="45%" /> <img src="preview/accueil4.png" width="45%" /><img src="preview/animals.png" width="45%" /> </p>
 
 ### Admin Dashboard
 - **Dashboard**: Overview cards for animals and families
